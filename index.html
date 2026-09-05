@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GridGuard | AI Energy Monitoring</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">⚡</div>
+
+            <div>
+                <h2>GridGuard</h2>
+                <span>Smart Grid Intelligence</span>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active">
+                <span>▦</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item">
+                <span>⚡</span>
+                Energy Analysis
+            </button>
+
+            <button class="nav-item">
+                <span>◉</span>
+                Anomalies
+            </button>
+
+            <button class="nav-item">
+                <span>⚑</span>
+                Inspections
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+            <p>GridGuard MVP v1.0</p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">SMART ENERGY MONITORING</p>
+
+               <div class="mvp-label">
+    <span class="mvp-dot"></span>
+    GRIDGUARD MVP
+</div>
+
+<h1>GridGuard Dashboard</h1>
+<p>AI-powered energy loss detection & sustainable grid management</p>
+            </div>
+
+            <div class="top-actions">
+
+                <div class="data-badge">
+                    <span class="live-dot"></span>
+                    Simulated Data
+                </div>
+
+                <button class="refresh-btn" onclick="refreshData()">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- KPI CARDS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Total Consumers</span>
+                    <div class="stat-icon blue">⌂</div>
+                </div>
+
+                <h2 id="totalConsumers">1,248</h2>
+
+                <p class="stat-description">
+                    Monitored consumers
+                </p>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <span>Energy Supplied</span>
+                    <div class="stat-icon cyan">⚡</div>
+                </div>
+
+                <h2><span id="suppliedEnergy">12,480</span> <small>kWh</small></h2>
+
+                <p class="stat-description">
+                    Transformer input
+                </p>
+            </div>
+
+
+            <div class="stat-card warning-card">
+
+                <div class="stat-top">
+                    <span>Energy Discrepancy</span>
+                    <div class="stat-icon orange">!</div>
+                </div>
+
+                <h2><span id="energyLoss">1,126</span> <small>kWh</small></h2>
+
+                <p class="stat-description">
+                    Requires investigation
+                </p>
+
+            </div>
+
+
+            <div class="stat-card danger-card">
+
+                <div class="stat-top">
+                    <span>High-Risk Cases</span>
+                    <div class="stat-icon red">⚠</div>
+                </div>
+
+                <h2 id="highRisk">18</h2>
+
+                <p class="stat-description">
+                    Priority inspections
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ENERGY BALANCE -->
+        <section class="content-grid">
+
+            <div class="panel energy-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Transformer Energy Balance</h3>
+                        <p>Compare supplied energy with recorded consumption</p>
+                    </div>
+
+                    <span class="panel-tag">T-07</span>
+
+                </div>
+
+
+                <div class="energy-balance">
+
+                    <div class="energy-box">
+
+                        <span class="energy-label">
+                            Energy Supplied
+                        </span>
+
+                        <strong>
+                            <span id="transformerInput">1,000</span>
+                            <small>kWh</small>
+                        </strong>
+
+                        <div class="progress">
+                            <div class="progress-fill supplied-fill"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="balance-symbol">
+                        −
+                    </div>
+
+
+                    <div class="energy-box">
+
+                        <span class="energy-label">
+                            Consumer Recorded
+                        </span>
+
+                        <strong>
+                            <span id="consumerOutput">820</span>
+                            <small>kWh</small>
+                        </strong>
+
+                        <div class="progress">
+                            <div class="progress-fill recorded-fill"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="balance-symbol">
+                        =
+                    </div>
+
+
+                    <div class="energy-box discrepancy-box">
+
+                        <span class="energy-label">
+                            Difference
+                        </span>
+
+                        <strong>
+                            <span id="transformerDifference">180</span>
+                            <small>kWh</small>
+                        </strong>
+
+                        <span class="investigate-label">
+                            ⚠ Investigate
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-message">
+
+                    <span>ⓘ</span>
+
+                    <p>
+                        An energy discrepancy does not automatically mean theft.
+                        It may also result from technical losses, faulty meters,
+                        missing data or unauthorized consumption.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI SUMMARY -->
+            <div class="panel ai-panel">
+
+                <div class="ai-header">
+
+                    <div class="ai-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <h3>AI Risk Engine</h3>
+                        <p>Pattern analysis</p>
+                    </div>
+
+                    <span class="ai-status">
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <div class="risk-main">
+
+                    <div class="risk-circle">
+                        <span id="overallRisk">82</span>
+                        <small>/100</small>
+                    </div>
+
+                    <div>
+                        <h4>High Risk Area</h4>
+
+                        <p>
+                            Multiple abnormal consumption patterns
+                            detected in Transformer T-07.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-factors">
+
+                    <div>
+                        <span>Consumption deviation</span>
+                        <strong>High</strong>
+                    </div>
+
+                    <div>
+                        <span>Energy discrepancy</span>
+                        <strong>Detected</strong>
+                    </div>
+
+                    <div>
+                        <span>Repeated anomalies</span>
+                        <strong>4 cases</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONSUMPTION CHART -->
+        <section class="panel chart-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h3>Energy Consumption Pattern</h3>
+
+                    <p>
+                        Expected vs actual consumption
+                    </p>
+                </div>
+
+                <div class="legend">
+
+                    <span>
+                        <i class="legend-dot expected"></i>
+                        Expected
+                    </span>
+
+                    <span>
+                        <i class="legend-dot actual"></i>
+                        Actual
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart">
+
+                <div class="y-axis">
+                    <span>500</span>
+                    <span>400</span>
+                    <span>300</span>
+                    <span>200</span>
+                    <span>100</span>
+                    <span>0</span>
+                </div>
+
+
+                <div class="chart-area">
+
+                    <div class="grid-lines"></div>
+
+                    <svg viewBox="0 0 800 250"
+                         preserveAspectRatio="none"
+                         class="chart-svg">
+
+                        <!-- Expected -->
+                        <polyline
+                            class="expected-line"
+                            points="
+                            0,80
+                            80,70
+                            160,75
+                            240,65
+                            320,72
+                            400,60
+                            480,68
+                            560,62
+                            640,65
+                            720,58
+                            800,62
+                            "
+                        />
+
+                        <!-- Actual -->
+                        <polyline
+                            class="actual-line"
+                            points="
+                            0,90
+                            80,82
+                            160,88
+                            240,95
+                            320,105
+                            400,120
+                            480,150
+                            560,180
+                            640,195
+                            720,215
+                            800,220
+                            "
+                        />
+
+                    </svg>
+
+
+                    <div class="x-axis">
+                        <span>Jan</span>
+                        <span>Feb</span>
+                        <span>Mar</span>
+                        <span>Apr</span>
+                        <span>May</span>
+                        <span>Jun</span>
+                        <span>Jul</span>
+                        <span>Aug</span>
+                        <span>Sep</span>
+                        <span>Oct</span>
+                        <span>Nov</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUSPICIOUS CASES -->
+        <section class="panel cases-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h3>Priority Inspection Cases</h3>
+
+                    <p>
+                        AI-ranked cases requiring human verification
+                    </p>
+                </div>
+
+                <button class="view-all" onclick="showAllCases()">
+                    View all →
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Consumer</th>
+                            <th>Location</th>
+                            <th>Transformer</th>
+                            <th>Expected</th>
+                            <th>Actual</th>
+                            <th>Risk</th>
+                            <th>Reason</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="casesTable">
+
+                        <tr>
+
+                            <td>
+                                <strong>GG-1024</strong>
+                            </td>
+
+                            <td>Kolkata</td>
+
+                            <td>T-07</td>
+
+                            <td>410 kWh</td>
+
+                            <td>170 kWh</td>
+
+                            <td>
+                                <span class="risk high">
+                                    91
+                                </span>
+                            </td>
+
+                            <td>
+                                Consumption dropped 58%
+                            </td>
+
+                            <td>
+                                <button
+                                    class="inspect-btn"
+                                    onclick="notifyOfficer('GG-1024')">
+                                    Notify Officer
+                                </button>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>GG-1088</strong>
+                            </td>
+
+                            <td>Kolkata</td>
+
+                            <td>T-07</td>
+
+                            <td>380 kWh</td>
+
+                            <td>210 kWh</td>
+
+                            <td>
+                                <span class="risk high">
+                                    84
+                                </span>
+                            </td>
+
+                            <td>
+                                Repeated abnormal pattern
+                            </td>
+
+                            <td>
+                                <button
+                                    class="inspect-btn"
+                                    onclick="notifyOfficer('GG-1088')">
+                                    Notify Officer
+                                </button>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>GG-1132</strong>
+                            </td>
+
+                            <td>Howrah</td>
+
+                            <td>T-08</td>
+
+                            <td>450 kWh</td>
+
+                            <td>275 kWh</td>
+
+                            <td>
+                                <span class="risk medium">
+                                    76
+                                </span>
+                            </td>
+
+                            <td>
+                                High deviation from history
+                            </td>
+
+                            <td>
+                                <button
+                                    class="inspect-btn"
+                                    onclick="notifyOfficer('GG-1132')">
+                                    Notify Officer
+                                </button>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>GG-1190</strong>
+                            </td>
+
+                            <td>Salt Lake</td>
+
+                            <td>T-09</td>
+
+                            <td>320 kWh</td>
+
+                            <td>190 kWh</td>
+
+                            <td>
+                                <span class="risk medium">
+                                    69
+                                </span>
+                            </td>
+
+                            <td>
+                                Sudden consumption change
+                            </td>
+
+                            <td>
+                                <button
+                                    class="inspect-btn"
+                                    onclick="notifyOfficer('GG-1190')">
+                                    Notify Officer
+                                </button>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div>
+                <strong>GridGuard</strong>
+                — AI-Powered Energy Loss Detection
+            </div>
+
+            <div>
+                ⚠ Risk score indicates inspection priority, not proof of theft.
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- NOTIFICATION -->
+    <div id="toast" class="toast">
+
+        <div class="toast-icon">
+            ✓
+        </div>
+
+        <div>
+            <strong>Inspection Request Sent</strong>
+
+            <p id="toastMessage">
+                Officer has been notified.
+            </p>
+        </div>
+
+        <button onclick="closeToast()">×</button>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
